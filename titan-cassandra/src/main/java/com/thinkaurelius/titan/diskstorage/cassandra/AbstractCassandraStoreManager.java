@@ -61,12 +61,12 @@ public abstract class AbstractCassandraStoreManager extends DistributedStoreMana
     public static final ConfigOption<String> CASSANDRA_READ_CONSISTENCY =
             new ConfigOption<String>(CASSANDRA_NS, "read-consistency-level",
             "The consistency level of read operations against Cassandra",
-            ConfigOption.Type.MASKABLE, "QUORUM");
+            ConfigOption.Type.MASKABLE, "LOCAL_QUORUM");
 
     public static final ConfigOption<String> CASSANDRA_WRITE_CONSISTENCY =
             new ConfigOption<String>(CASSANDRA_NS, "write-consistency-level",
             "The consistency level of write operations against Cassandra",
-            ConfigOption.Type.MASKABLE, "QUORUM");
+            ConfigOption.Type.MASKABLE, "LOCAL_QUORUM");
 
     public static final ConfigOption<Boolean> ATOMIC_BATCH_MUTATE =
             new ConfigOption<Boolean>(CASSANDRA_NS, "atomic-batch-mutate",
@@ -221,8 +221,8 @@ public abstract class AbstractCassandraStoreManager extends DistributedStoreMana
         if (features == null) {
 
             Configuration global = GraphDatabaseConfiguration.buildGraphConfiguration()
-                    .set(CASSANDRA_READ_CONSISTENCY, "QUORUM")
-                    .set(CASSANDRA_WRITE_CONSISTENCY, "QUORUM")
+                    .set(CASSANDRA_READ_CONSISTENCY, "LOCAL_QUORUM")
+                    .set(CASSANDRA_WRITE_CONSISTENCY, "LOCAL_QUORUM")
                     .set(METRICS_PREFIX, GraphDatabaseConfiguration.METRICS_SYSTEM_PREFIX_DEFAULT);
 
             Configuration local = GraphDatabaseConfiguration.buildGraphConfiguration()
